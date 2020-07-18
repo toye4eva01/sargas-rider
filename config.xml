@@ -65,6 +65,10 @@
     <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-vibration" />
 
+
+    <platform name="android">
+        <preference name="android-minSdkVersion" value="28" />
+    </platform>
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
     <!--
