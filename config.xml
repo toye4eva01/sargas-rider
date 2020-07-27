@@ -33,7 +33,7 @@
     
     <!--<gap:plugin name="org.apache.cordova.dialogs" source="npm" />
     <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" /> -->
-    <gap:plugin name="org.apache.cordova.splashscreen" source="pgb" />
+<!--     <gap:plugin name="org.apache.cordova.splashscreen" source="pgb" /> -->
  
     
     <gap:plugin name="de.appplant.cordova.plugin.local-notification" source="pgb" version="0.8.1" />
