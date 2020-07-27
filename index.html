@@ -156,7 +156,6 @@
 
         }else {
 
-		alert(email);
 
             $.ajax({
                 type:"POST",
@@ -167,7 +166,7 @@
 
                 success: function (msg) {
 
-			alert(msg)
+			
                     if (msg.status == 1001) {
                         // console.log(msg.result)
                         alert(msg.message);
