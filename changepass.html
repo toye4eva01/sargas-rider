@@ -294,6 +294,13 @@
 
         }else {
 
+          if ($('#loading_image').length == 0) { //is the image on the form yet?
+              // add it just before the submit button
+              $('#submit').before('<img src="images/loader.gif" style="display: none; margin-left: 150px !important;" align="center" width= "50px"  alt="loading" id="loading_image">')
+          }
+          $('#loading_image').show(); // show the animated image
+          $('#submit').hide(); // disable double submits
+
 
             $.ajax({
                 type:"POST",
@@ -310,6 +317,8 @@
                         // location.reload();
                     } else {
                         alert(msg.message);
+                        $('#loading_image').hide(); // hide the animated image
+                        $('#submit').show(); // enableable double submits
                     }
 
                 }

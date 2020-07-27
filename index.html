@@ -10,7 +10,7 @@
 <title>mobili - mobile template</title>
 <link rel="stylesheet" href="css/swiper.css">
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900" rel="stylesheet">
 </head>
 <body id="mobile_wrap" style="background-color: #77C307 !important;">
 
@@ -19,13 +19,13 @@
     <div class="green2" style="margin-top: 50% !important;  color: whitesmoke !important;">
 
 
-
+ <div id="show">  <div />
         <div class="navbar__col--title-centered"> <img src="images/logo.png" width="70" alt ="Logo" align="center"  /></div>
         <div class="content-block">
 <!--            <h4>LOGIN</h4>-->
             <div class="loginform">
                 <form id="LoginForm" method="post">
-                    <input type="number" name="Username" value="" class="form_input required" placeholder="username" id="username" />
+                    <input type="number" name="Username" value="" class="form_input required" placeholder="Phone Number" id="username" />
                     <input type="password" name="Password" value="" class="form_input required" placeholder="password" id="password" />
                     <div class="forgot_pass"><a href="#" data-popup=".popup-forgot" class="open-popup" style="color: whitesmoke !important;" >Forgot Password?</a></div>
                     <input type="submit" name="submit" class="form_submit" id="submit" value="SIGN IN" />
@@ -43,7 +43,7 @@
     </div>
 
 
-	
+
     <!-- Forgot Password Popup -->
     <div class="popup popup-forgot " style="background-color: #77C307 !important;">
         <div class="content-block">
@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-	
+
     <!-- Social Icons Popup -->
 <!--    <div class="popup popup-social">-->
 <!--    <div class="content-block">-->
@@ -79,7 +79,7 @@
 <!--      <div class="close_popup_button"><a href="#" class="close-popup" data-popup=".popup-social"><img src="images/icons/black/menu_close.png" alt="" title="" /></a></div>-->
 <!--    </div>-->
 <!--    </div>-->
-    
+
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery.validate.min.js" ></script>
 <script src="js/swiper.min.js"></script>
@@ -110,6 +110,13 @@
 
     }else {
 
+        if ($('#loading_image').length == 0) { //is the image on the form yet?
+            // add it just before the submit button
+            $('#submit').before('<img src="images/loader.gif" style="display: none; margin-left: 150px !important;" align="center" width= "50px"  alt="loading" id="loading_image">')
+        }
+        $('#loading_image').show(); // show the animated image
+        $('#submit').hide(); // disable double submits
+
 
         $.ajax({
             type:"POST",
@@ -131,7 +138,10 @@
                     window.location.replace('orders.html');
                     // location.reload();
                 } else {
+
                     alert(msg.message);
+                    $('#loading_image').hide(); // hide the animated image
+                    $('#submit').show(); // enableable double submits
                 }
 
             }
@@ -155,6 +165,13 @@
             return false;
 
         }else {
+          if ($('#loading_image').length == 0) { //is the image on the form yet?
+              // add it just before the submit button
+              $('#submitforgot').before('<img src="images/loader.gif" style="display: none; margin-left: 150px !important;" align="center" width= "50px"  alt="loading" id="loading_image">')
+          }
+          $('#loading_image').show(); // show the animated image
+          $('#submitforgot').hide(); // disable double submits
+
 
 
             $.ajax({
@@ -172,6 +189,8 @@
                         // location.reload();
                     } else {
                         alert(msg.message);
+                        $('#loading_image').hide(); // hide the animated image
+                        $('#submitforgot').show(); // enableable double submits
                     }
 
                 }
