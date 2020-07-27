@@ -66,11 +66,11 @@
 	
 	
 
-  
+  <access origin="*" launch-external="yes" />
 
-    <access origin="*"/>
+<!--     <access origin="*"/>
 
-	<access origin="127.0.0.1*"/>
+	<access origin="127.0.0.1*"/> -->
 	
    
 
