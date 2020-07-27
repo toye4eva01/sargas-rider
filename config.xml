@@ -36,9 +36,9 @@
 <!--     <gap:plugin name="org.apache.cordova.splashscreen" source="pgb" /> -->
  
     
-    <gap:plugin name="de.appplant.cordova.plugin.local-notification" source="pgb" version="0.8.1" />
+<!--     <gap:plugin name="de.appplant.cordova.plugin.local-notification" source="pgb" version="0.8.1" />
     <gap:plugin name="org.apache.cordova.network-information" source="pgb" version="0.2.15" />
-
+ -->
    
     <!--
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
