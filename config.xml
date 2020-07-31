@@ -23,7 +23,8 @@
     <preference name="stay-in-webview" value="false"/>
     <preference name="orientation" value="portrait"/>
     <preference name="target-device" value="universal"/>
-
+    
+        <allow-navigation href="*"/>
 
 
     <!-- Plugins -->
@@ -73,6 +74,7 @@
         <access origin="127.0.0.1*"/> -->
 
     <access origin="*" />
+        
     <plugin name="cordova-plugin-whitelist" version="1" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
