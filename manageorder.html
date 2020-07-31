@@ -295,6 +295,7 @@
                     show +='<div class="shop_item_details">';
                     show +='<div class="item_title">Address: <b> '+ msg.apt +' '+msg.street +' '+msg.street2 +' '+msg.zone +' '+msg.city +' </b> </div>';
                     show +='<div class="item_title">Customer Name: <b> '+msg.firstname +' '+msg.lastname +'</b> </div>';
+                    show +='<div class="shop_item_price">Customer Phone: '+val.phone +'</div>';
                     show +='<div class="item_title"> Cylinder Code: <b> '+msg.cylinder_code +'</b> </div>';
                 if (msg.payment_id == "" || msg.payment_id == undefined ) {
                     show += '<div class="item_price" style="background-color: firebrick !important; color: whitesmoke !important;"> Amount To Pay: NGN ' + msg.amount + ' </div>';
