@@ -274,7 +274,7 @@
     $.ajax({
 
         type: "POST",
-        url: "scripts/details2.php",
+        url: "http://sargasoms.com/api/sargas-rider/details2.php",
         data: {dispatch_id:dispatch_id},
         dataType: "json",
 
@@ -378,7 +378,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "scripts/deliverorder.php",
+                url: "http://sargasoms.com/api/sargas-rider/deliverorder.php",
                 dataType: "json",
                 data: {"pm_id": pay, "dispatch_id": dispatch_id},
                 success: function (msg) {
