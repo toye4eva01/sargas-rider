@@ -19,7 +19,7 @@
     <feature name="http://api.phonegap.com/1.0/device" />
 
     <!--    <preference name="phonegap-version" value="9.0.0"/> -->
-    <preference name="android-targetSdkVersion" value="28" />
+    <preference name="android-targetSdkVersion" value="29" />
     <preference name="stay-in-webview" value="false"/>
     <preference name="orientation" value="portrait"/>
     <preference name="target-device" value="universal"/>
