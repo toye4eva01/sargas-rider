@@ -24,7 +24,7 @@
     <preference name="orientation" value="portrait"/>
     <preference name="target-device" value="universal"/>
     
-        <allow-navigation href="*"/>
+<!--        <allow-navigation href="*"/>-->
 
 
     <!-- Plugins -->
