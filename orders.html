@@ -23,9 +23,9 @@
 			<div class="swiper-slide">
 				<nav class="main_nav_underline">
 				<ul>
-				<li><a href="index.html"><img src="images/icons/gray/home.png" alt="" title="" /><span>Home</span></a></li>
-				<li><a href="about.html"><img src="images/icons/gray/mobile.png" alt="" title="" /><span>About</span></a></li>
-				<li><a href="features.html"><img src="images/icons/gray/features.png" alt="" title="" /><span>Features</span></a></li>
+<!--				<li><a href="index.html"><img src="images/icons/gray/home.png" alt="" title="" /><span>Home</span></a></li>-->
+<!--				<li><a href="about.html"><img src="images/icons/gray/mobile.png" alt="" title="" /><span>About</span></a></li>-->
+<!--				<li><a href="features.html"><img src="images/icons/gray/features.png" alt="" title="" /><span>Features</span></a></li>-->
 
 
 <!--				<li><a href="team.html"><img src="images/icons/gray/users.png" alt="" title="" /><span>Team</span></a></li>-->
@@ -122,6 +122,7 @@
 		<div class="navbar navbar--fixed navbar--fixed-top navbar--bg">
 			<div class="navbar__col navbar__col--title">
 				<a href="#">SARGAS RIDER</a>
+
 			</div>
 <!--			<div class="navbar__col navbar__col--icon navbar__col--icon-right">-->
 <!--				<a href="cart.html"><img src="images/icons/white/cart.png" alt="" title="" /><span class="navbar__icon-bullet">3</span></a>-->
@@ -135,8 +136,11 @@
                 </div>
 
      <div id="pages_maincontent">
+         <div>
+             <h2 class="page_title">Awaiting Orders
+             <button id="refresh" class="btn btn--cart" style="float:right !important;">Refresh</button> </h2>
+         </div>
 
-     <h2 class="page_title">Awaiting Orders</h2>
 
 
 	<div class="page_single layout_fullwidth_padding">
@@ -227,7 +231,7 @@
         $.ajax({
 
             type: "POST",
-            url: "http://sargasoms.com/api/sargas-rider/orderdetails.php",
+            url: "scripts/orderdetails.php",
             data: {rider_id:rider_id},
             dataType: "json",
 
@@ -248,7 +252,7 @@
                            show +='<div class="shop_item_details">';
                            show +='<h4>Address: '+ val.apt +' '+val.street +' '+val.street2 +' '+val.zone +' '+val.city +' </h4>';
                            show +='<div class="shop_item_price">Customer Name: '+val.firstname +' '+val.lastname +'</div>';
-                           show +='<div class="shop_item_price">Customer Phone: '+val.phone +'</div>';
+                           show +='<a class="shop_item_price"> Customer Phone:<a href=tel:" '+val.phone +'"</a></div>';
                            show +='<div class="shop_item_price"> Cylinder Size: '+val.size +' </div>';
                            // show +='<input type="text" class="dispatch" value="'+val.dispatch_id +' ">';
                            // show +='<div class="item_qnty_shop">';
@@ -291,6 +295,86 @@
 
 
     });
+
+
+    $('#refresh').click(function() {
+        // window.location = window.location.href;
+
+        let rider_id = localStorage.getItem("rider_id");
+        let firstname = localStorage.getItem("firstname");
+        let lastname = localStorage.getItem("lastname");
+        let branch = localStorage.getItem("branch");
+        let branch_id = localStorage.getItem("branch_id");
+        let email = localStorage.getItem("email");
+
+
+        $('#firstname').html(firstname);
+        $('#branch').html(branch);
+
+
+        $.ajax({
+
+            type: "POST",
+            url: "scripts/orderdetails.php",
+            data: {rider_id: rider_id},
+            dataType: "json",
+
+            success: function (msg) {
+                console.log(msg);
+
+                // alert(msg);
+                if (msg.status == 1001) {
+
+                    // $('#firstname').html(firstname);
+                    // alert(1);
+
+                    let show = '';
+                    $.each(msg.data, function (key, val) {
+                        // option +='<option value ="'+val.not_temp_id+'">'+val.not_name+'</option>';
+                        show += '<li>';
+                        show += ' <div class="shop_thumb"><a href="shop-item.html"><img src="images/cylinder.png" alt="" title="" /></a></div>';
+                        show += '<div class="shop_item_details">';
+                        show += '<h4>Address: ' + val.apt + ' ' + val.street + ' ' + val.street2 + ' ' + val.zone + ' ' + val.city + ' </h4>';
+                        show += '<div class="shop_item_price">Customer Name: ' + val.firstname + ' ' + val.lastname + '</div>';
+                        show += '<div class="shop_item_price">Customer Phone: ' + val.phone + '</div>';
+                        show += '<div class="shop_item_price"> Cylinder Size: ' + val.size + ' </div>';
+                        // show +='<input type="text" class="dispatch" value="'+val.dispatch_id +' ">';
+                        // show +='<div class="item_qnty_shop">';
+                        // show +='<form id="myform" method="POST" action="#">';
+                        // show +='<input type="button" value="-" class="qntyminusshop" field="quantity" />';
+                        // show +='<input type="text" name="quantity" value="1" class="qntyshop" />';
+                        // show +='<input type="button" value="+" class="qntyplusshop" field="quantity" />';
+                        // show +='</form>';
+                        // show +='</div>';
+                        if (val.cylinder_id == '' || val.cylinder_id == null || val.cylinder_id == '0') {
+                            show += '<a href="assigncylinder.html?dispatch_id=' + val.dispatch_id + '" data-item ="' + val.dispatch_id + '" class="btn btn--cart">Pick Up Cylinder</a>';
+
+                        } else {
+                            show += '<a href="manageorder.html?dispatch_id=' + val.dispatch_id + '" data-item ="' + val.dispatch_id + '" class="btn btn--cart">Deliver Cylinder</a>';
+                        }
+                        //  show +='<a href="#" data-popup=".popup-login" data-item ="'+val.dispatch_id+'" class="btn btn--cart open-popup">View Delivery</a>';
+                        show += '</div>';
+                        show += '</li>';
+
+                    });
+
+                    $('#child_id').html(show);
+
+
+                } else {
+                    // console.log(msg.message);
+                    alert(msg.message);
+                }
+            }
+            // }
+
+        });
+
+        return false;
+    })
+
+
+
 
 
 
